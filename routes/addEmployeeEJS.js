@@ -34,7 +34,7 @@ router.post("/register", (req, res) => {
 
     passport.authenticate("local")(req, res, () => {
       if (req.body.adminCode === process.env.ADMIN_CODE) {
-        res.redirect("/add/employee");
+        res.redirect("/api/employee/admin");
       } else {
         res.redirect("/add/employee/error");
       }
@@ -46,7 +46,7 @@ router.post(
   "/admin/login",
   adminUser,
   passport.authenticate("local", {
-    successRedirect: "/add/employee"
+    successRedirect: "/api/employee/admin"
   }),
   (req, res) => {
     res.send("success");

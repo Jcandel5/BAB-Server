@@ -9,12 +9,14 @@ const LocalStrategy = require("passport-local");
 const passportLocalMongoose = require("passport-local-mongoose");
 const User = require("./models/user");
 const addEmployeeRoutes = require("./routes/addEmployeeEJS");
+const methodOverride = require("method-override");
 
 app.use(bodyParser.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
+app.use(methodOverride("_method"));
 
 app.use(
   require("express-session")({
@@ -32,6 +34,9 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use("/", employeeRoutes);
 app.use("/add/employee", addEmployeeRoutes);
+// app.use("/*", (req, res) => {
+//   res.render("NotFound");
+// });
 
 app.listen(port, () => {
   console.log("listening on port", port);

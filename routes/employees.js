@@ -58,36 +58,59 @@ router.post("/api/employee", (req, res) => {
   });
 });
 
-router.get("/api/employee/:employeeId", (req, res) => {
-  db.Employee.findById({ _id: req.params.employeeId })
-    .then(employee => {
-      res.json(employee);
-    })
-    .catch(err => {
-      res.json(err);
-    });
+router.get("/api/employee/admin", (req, res) => {
+  db.Employee.find({}, (err, employee) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("listEmployees", { employees: employee });
+    }
+  });
 });
 
-router.put("/api/employee/:employeeId", (req, res) => {
-  db.Employee.findOneAndUpdate({ _id: req.params.employeeId }, req.body, {
-    new: true
-  })
-    .then(function(video) {
-      res.json(video);
-    })
-    .catch(function(err) {
-      res.send(err);
-    });
+router.get("/api/employee/admin/:id", (req, res) => {
+  db.Employee.findById({ _id: req.params.id }, (err, employee) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("showEmployee", { employees: employee });
+    }
+  });
 });
 
-router.delete("/api/employee/:employeeId", (req, res) => {
-  db.Employee.remove({ _id: req.params.employeeId })
-    .then(function() {
-      res.json({ message: "Employee deleted" });
-    })
-    .catch(function(err) {
-      res.send(err);
+router.get("/api/employee/admin/:id/edit", (req, res) => {
+  db.Employee.findById(req.params.id, (err, employee) => {
+    res.render("editEmployee", {
+      employee: employee
     });
+  });
+});
+
+router.put("/api/employee/admin/:id", (req, res) => {
+  db.Employee.findOneAndUpdate(
+    { _id: req.params.id },
+    req.body.employee,
+    {
+      new: true
+    },
+    (err, updatedEmployee) => {
+      if (err) {
+        res.redirect("/api/employee/admmin");
+      } else {
+        res.redirect("/api/employee/admin/" + req.params.id);
+      }
+    }
+  );
+});
+
+router.delete("/api/employee/admin/:id", (req, res) => {
+  db.Employee.findByIdAndRemove({ _id: req.params.id }, (err, deleted) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.redirect("/api/employee/admin");
+    }
+  });
 });
 
 module.exports = router;

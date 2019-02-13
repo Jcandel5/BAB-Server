@@ -1,0 +1,21 @@
+<% include ./partials/header %>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <img class="img-responsive" src="<%= employees.image %>">
+                <div class="caption-full">
+                    <h4><%=employees.name%> | <%=employees.title%></h4>
+
+                    <p><%= employees.desc %></p>
+                        <a class="btn btn-xs btn-warning" href="/api/employee/admin/<%= employees._id %>/edit">Edit</a>
+                        <form class="delete-form" action="/api/employee/admin/<%= employees._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-xs btn-danger">Delete</button>
+                        </form>
+                </div>
+            </div>
+              <a href="/api/employee/admin">Employees</a>
+        </div>
+    </div>
+</div>
