@@ -1,0 +1,17 @@
+<% include ./partials/header %>
+<div class="container">
+    <div class="jumbotron">
+
+        <h1 style="text-align: center; color: blue" class="display-4 "> You Have Successfully Added</h1>
+          <hr class="my-4">
+          <div style=" padding-left: 200px; display: block; margin-left: auto; margin-right: auto; width: 50%;">
+
+            <img src="<%=employee.image%>" alt="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAB7CAMAAABjGQ9NAAAANlBMVEWVu9////+QuN7z9/uLtdzm7vfH2u3h6/X6+/2dwOHt8/m40enQ4PCjxOO80+qzzeeryeXa5/PnFbCVAAADYElEQVRoge2b63KjMAyFjZANBozN+7/sAglN2ASQ6HEyu8PptD8ymX5FlqxbY8ylS5curUTExvswfnnDRJ8Em9TZpizrui7LxnbJfAhP1FbF36raD9CJXf1CnlQ7zkzn+J480yPnRFO3SZ7U5Xzy14P+69izkekIPcIzPTnvG/xu9ixnTq0AXRRtlicXoYsiA1lk8UxWJyG6KOBGJydmOzScSjG7RLODGF0UAYtWmBxudMGV9hD6cpMf93jgWLRXoIvCQ9kaVwM7GyUVOyEPXJhHFkHzCfUqdv/fsL9ocxNV7IhEfzPGvnq3+O2W4FU1lm0aBbvBor+Zxw6aobXArZEqwNElusbRwa721VqRBjF7gLPlxSI0k9wkZsPJhqUHXmbox6RGh7dERh5l6AibxFaEtlkGD7L6AVs3LGJJLmvyDHtERTq0NH+Gf2/GJanawK33kw5jPEdsLzqIszzx9QPfu1kz3KZrbcPBLf87bZndZqXeHel92dit3gMGU7h7MaXXC6653ynkAnxxQhyqx6iU49rwdtlWTEPXKiAXJ8TG3Vxs4J9X2q6ad1RV15oFxreirnQGgyf2/eMpm58DpUk8/1xeeWqcbO9/jSfT2lUbWG8twoj69Rtt+yvHo8XWq8NNb+hE6TX2RtufplN4f5HYuN5B0mSdt+8sw0n4Tg9WD30gZp6/Qz9sd+fnejM6qpHqxlrbHA0F4hm4atSw8xeeqFtZ0+3vqdJnN90EdU9J/diyalwidUWhG2rtS3niqv3IkZRVnLjrlEhZSyFNrjS6cmZ9JNUkQjFdkUg3gUEet7aChaJVI5jDNKKVIqFAo3uSIsJheWSRJp9opuUSKSbqoNT9kCKJ6zYzEolnAsptmETisg3u5gpHh7u5wtEJ7eaasRv2Np8kvtHhIaYIMnyIyYMMVx4/JCyU4VlskjCTgQumm4RlU4arRXy5qHafUgl3pBf782zlP3XIJF3hgDuDSfLugHpsJms0TRGZNKCSWTkk7ZiNTQTgyyGaM9sEYpPc4QxrW3Xj0m+GuiM/ujOjF+siYphMzL7trNQAte1az8AZ+jyqTm6wu3siO7hknqbaQM2/1Ifouso2t4+XzB8waWzVuRj8/R05ReMhjAx//1yNN7cZfl7opUuX/i39AcI2JW+uL9bNAAAAAElFTkSuQmCC">
+          </div>
+          <h3 style="text-align: center" class="lead"> <%=employee.name + " " + employee.title%></h3>
+          <p style="text-align: center" class="lead"> <%=employee.desc%></p>
+
+          <a  href="/add/employee/logout">Logout</a>
+
+    </div>
+ </div>

@@ -1,0 +1,17 @@
+/*Be sure to look into browser prefixes for keyframes and annimations*/
+.flash {
+  animation-name: flash;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-play-state: running;
+}
+@keyframes flash {
+  from {
+    color: red;
+  }
+  to {
+    color: white;
+  }
+}
