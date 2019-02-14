@@ -58,7 +58,7 @@ router.post("/api/employee", (req, res) => {
   });
 });
 
-router.get("/api/employee/admin", (req, res) => {
+router.get("/api/employee/admin", isLoggedIn, (req, res) => {
   db.Employee.find({}, (err, employee) => {
     if (err) {
       console.log(err);
@@ -114,3 +114,10 @@ router.delete("/api/employee/admin/:id", (req, res) => {
 });
 
 module.exports = router;
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/add/employee/error");
+}
