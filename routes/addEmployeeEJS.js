@@ -38,6 +38,7 @@ router.post("/register", (req, res) => {
       } else {
         res.redirect("/add/employee/error");
       }
+      req.flash("success", "Welcome to Admin Portal!");
     });
   });
 });
@@ -50,15 +51,17 @@ router.post(
   "/admin/login",
   adminUser,
   passport.authenticate("local", {
-    successRedirect: "/api/employee/admin"
+    successRedirect: "/api/employee/admin",
+    failureRedirect: "/add/employee/login"
   }),
   (req, res) => {
-    res.send("success");
+    req.flash("success", "Welcome to Admin Portal!");
   }
 );
 
 router.get("/logout", (req, res) => {
   req.logout();
+  req.flash("success", "Logged you out!");
   res.redirect("/add/employee/login");
 });
 
@@ -80,7 +83,7 @@ router.post("/admin/forgot", function(req, res, next) {
       function(token, done) {
         User.findOne({ email: req.body.email }, function(err, user) {
           if (!user) {
-            // req.flash("error", "No account with that email address exists.");
+            req.flash("error", "No account with that email address exists.");
             return res.redirect("/add/employee/forgot");
           }
 
@@ -116,12 +119,12 @@ router.post("/admin/forgot", function(req, res, next) {
         };
         smtpTransport.sendMail(mailOptions, function(err) {
           console.log("mail sent");
-          // req.flash(
-          //   "success",
-          //   "An e-mail has been sent to " +
-          //     user.email +
-          //     " with further instructions."
-          // );
+          req.flash(
+            "success",
+            "An e-mail has been sent to " +
+              user.email +
+              " with further instructions."
+          );
           done(err, "done");
         });
       }
@@ -145,7 +148,7 @@ router.get("/reset/:token", function(req, res) {
     },
     function(err, user) {
       if (!user) {
-        // req.flash("error", "Password reset token is invalid or has expired.");
+        req.flash("error", "Password reset token is invalid or has expired.");
         return res.redirect("/forgot");
       }
       res.render("reset", { token: req.params.token });
@@ -164,10 +167,10 @@ router.post("/admin/reset/:token", function(req, res) {
           },
           function(err, user) {
             if (!user) {
-              // req.flash(
-              //   "error",
-              //   "Password reset token is invalid or has expired."
-              // );
+              req.flash(
+                "error",
+                "Password reset token is invalid or has expired."
+              );
               return res.redirect("back");
             }
             if (req.body.password === req.body.confirm) {
@@ -182,7 +185,7 @@ router.post("/admin/reset/:token", function(req, res) {
                 });
               });
             } else {
-              // req.flash("error", "Passwords do not match.");
+              req.flash("error", "Passwords do not match.");
               return res.redirect("back");
             }
           }
@@ -207,7 +210,7 @@ router.post("/admin/reset/:token", function(req, res) {
             " has just been changed.\n"
         };
         smtpTransport.sendMail(mailOptions, function(err) {
-          // req.flash("success", "Success! Your password has been changed.");
+          req.flash("success", "Success! Your password has been changed.");
           done(err);
         });
       }

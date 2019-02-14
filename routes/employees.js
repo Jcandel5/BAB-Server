@@ -52,7 +52,8 @@ router.post("/api/employee", (req, res) => {
       if (err) {
         console.log("error creating employee", err);
       } else {
-        res.render("success", { employee: newEmployee });
+        req.flash("success", "Sucessfully Added a New Employee");
+        res.redirect("/api/employee/admin");
       }
     });
   });
@@ -97,6 +98,7 @@ router.put("/api/employee/admin/:id", (req, res) => {
       if (err) {
         res.redirect("/api/employee/admmin");
       } else {
+        req.flash("success", "Updated Employee Profile!");
         res.redirect("/api/employee/admin/" + req.params.id);
       }
     }
@@ -108,6 +110,7 @@ router.delete("/api/employee/admin/:id", (req, res) => {
     if (err) {
       console.log(err);
     } else {
+      req.flash("success", "Deleted Employee!");
       res.redirect("/api/employee/admin");
     }
   });
