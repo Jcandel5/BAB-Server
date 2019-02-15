@@ -28,7 +28,9 @@ const upload = multer({
 });
 
 const singleUpload = upload.single("image");
-
+router.get("/", (req, res) => {
+  res.redirect("/add/employee/register")
+})
 router.get("/api/employee", (req, res) => {
   db.Employee.find({})
     .then(del => {
