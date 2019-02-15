@@ -9,6 +9,7 @@ const LocalStrategy = require("passport-local");
 const passportLocalMongoose = require("passport-local-mongoose");
 const User = require("./models/user");
 const addEmployeeRoutes = require("./routes/addEmployeeEJS");
+const couponRoutes = require("./routes/coupons");
 const methodOverride = require("method-override");
 const flash = require("connect-flash");
 
@@ -44,9 +45,7 @@ app.use((req, res, next) => {
 
 app.use("/", employeeRoutes);
 app.use("/add/employee", addEmployeeRoutes);
-// app.use("/*", (req, res) => {
-//   res.render("NotFound");
-// });
+app.use("/admin/coupons", couponRoutes);
 
 app.listen(port, () => {
   console.log("listening on port", port);

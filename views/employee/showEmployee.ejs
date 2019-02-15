@@ -1,4 +1,4 @@
-<% include ./partials/header %>
+<% include ../partials/header %>
 <div class="container">
     <div class="row">
 
@@ -11,7 +11,7 @@
                     <p><%= employees.desc %></p>
                         <a class="btn btn-xs btn-warning" href="/api/employee/admin/<%= employees._id %>/edit">Edit</a>
                         <form class="delete-form" action="/api/employee/admin/<%= employees._id %>?_method=DELETE" method="POST">
-                            <button class="btn btn-xs btn-danger">Delete</button>
+                            <input class="btn btn-xs btn-danger" type="submit" name="delete" value='Delete' onClick="return confirm('Are you sure you want to delete?')" />
                         </form>
                 </div>
             </div>

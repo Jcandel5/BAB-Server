@@ -7,7 +7,7 @@ const nodemailer = require("nodemailer");
 const async = require("async");
 
 router.get("/", isLoggedIn, (req, res, next) => {
-  res.render("addEmployee");
+  res.render("employee/addEmployee");
 });
 
 router.get("/error", (req, res) => {

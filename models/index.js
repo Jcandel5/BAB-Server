@@ -1,5 +1,8 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
+const Employee = require("./employee");
+const Coupon = require("./coupon");
 require("dotenv").config();
+
 mongoose.set("debug", true);
 mongoose.connect(
   process.env.DATABASE_URI,
@@ -8,4 +11,8 @@ mongoose.connect(
 
 mongoose.Promise = Promise;
 
-module.exports.Employee = require("./employee");
+// module.exports.Employee = require("./employee");
+module.exports = {
+  Employee,
+  Coupon
+};

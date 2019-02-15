@@ -64,7 +64,7 @@ router.get("/api/employee/admin", isLoggedIn, (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      res.render("listEmployees", { employees: employee });
+      res.render("employee/listEmployees", { employees: employee });
     }
   });
 });
@@ -74,14 +74,14 @@ router.get("/api/employee/admin/:id", (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      res.render("showEmployee", { employees: employee });
+      res.render("employee/showEmployee", { employees: employee });
     }
   });
 });
 
 router.get("/api/employee/admin/:id/edit", (req, res) => {
   db.Employee.findById(req.params.id, (err, employee) => {
-    res.render("editEmployee", {
+    res.render("employee/editEmployee", {
       employee: employee
     });
   });
