@@ -1,21 +1,25 @@
 <% include ../partials/header %>
 <div class="container">
     <div class="row">
+      <div class="col-md-3">
+          <h1><%=employees.name%></h1>
 
-        <div class="col-md-9">
+      </div>
+
+        <div class="col-md-7">
             <div class="thumbnail">
                 <img class="img-responsive" src="<%= employees.image %>">
                 <div class="caption-full">
-                    <h4><%=employees.name%> | <%=employees.title%></h4>
+                    <h3><%=employees.name%> </h3>
+                    <h4 ><%=employees.title%></h4>
 
-                    <p><%= employees.desc %></p>
+                    <p ><%= employees.desc %></p>
                         <a class="btn btn-xs btn-warning" href="/api/employee/admin/<%= employees._id %>/edit">Edit</a>
                         <form class="delete-form" action="/api/employee/admin/<%= employees._id %>?_method=DELETE" method="POST">
                             <input class="btn btn-xs btn-danger" type="submit" name="delete" value='Delete' onClick="return confirm('Are you sure you want to delete?')" />
                         </form>
                 </div>
             </div>
-              <a href="/api/employee/admin">Employees</a>
         </div>
     </div>
 </div>
