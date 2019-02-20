@@ -39,6 +39,17 @@ router.get("/", isLoggedIn, (req, res) => {
   });
 });
 
+router.get('/client', (req, res)=>{
+  db.Coupon.find({})
+  .then(del => {
+    res.json(del);
+  })
+  .catch(err => {
+    res.send(err);
+  });
+})
+
+
 router.get("/add", (req, res) => {
   res.render("coupon/addCoupon");
 });
